@@ -43,6 +43,14 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_trait(self, *ids):
+        """Get the trait data for the trait(s) with the given id(s) as a list."""
+        return self._request("traits", ids=','.join(str(id) for id in ids))
+
+    def get_traits_ids(self):
+        """Get just all the trait ids as a list."""
+        return self._request("traits")
+
     def get_world(self, *ids):
         """Get the world data for the world(s) with the given id(s) as a list."""
         return self._request("worlds", ids=','.join(str(id) for id in ids))
