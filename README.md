@@ -17,7 +17,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     worlds = gw.get_world(1001, 1002, 1003)
     worlds = gw.get_worlds()
     
-    # You can also grab just all world ids.
+    # You can also grab just all the world ids.
     world_ids = gw.get_worlds_ids()
     
     # Print out all the world names of the worlds with a very high population of players.

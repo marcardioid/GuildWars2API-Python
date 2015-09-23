@@ -61,7 +61,9 @@ class GW2(object):
 
     def get_connection_details(self):
         """Get the API connection details as a string."""
-        return "Connected to '{}' ({}).{}".format(self.API_SERVER, self.API_LANGUAGE.upper(), " (With token: {})".format(self.API_KEY) if self.API_KEY else '')
+        return "Connected to '{}' ({}).{}".format(self.API_SERVER,
+                                                  self.API_LANGUAGE.upper(),
+                                                  " (With token: {})".format(self.API_KEY) if self.API_KEY else '')
 
     def authenticate(self, key):
         """Authenticate to the GuildWars2 API using the given API key."""
@@ -73,7 +75,9 @@ class GW2(object):
         kwargs["lang"] = self.API_LANGUAGE
         version = "v2" if location in self.API_ENDPOINTS_V2 else "v1"
         try:
-            r = self.session.get("{}/{}/{}".format(self.API_SERVER, version, location), params=kwargs.items(), timeout=self.API_TIMEOUT)
+            r = self.session.get("{}/{}/{}".format(self.API_SERVER, version, location),
+                                 params=kwargs.items(),
+                                 timeout=self.API_TIMEOUT)
             r.raise_for_status()
             try:
                 return r.json()
