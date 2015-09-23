@@ -41,7 +41,7 @@ class GW2(object):
         ]
         self.API_KEY = None
         self.session = requests.Session()
-        self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
+        self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
     def get_file(self, *ids):
         """Returns the file data for the file(s) with the given id(s) as a list."""
@@ -81,14 +81,14 @@ class GW2(object):
 
     def get_pvp_game(self, *ids, token=None):
         """Returns the pvp game data for the pvp game(s) with the given id(s) as a list.
-        The API endpoint only supplies the 10 lates games at most.
+        The API endpoint only supplies the 10 latest games at most.
         """
         matches = ','.join(str(id) for id in ids)
         return self._request("pvp/games", access_token=token, ids=matches) if token else self._request("pvp/games", ids=matches)
 
     def get_pvp_games_ids(self, token=None):
         """Returns just all the pvp game ids as a list.
-        The API endpoint only supplies the 10 lates games at most.
+        The API endpoint only supplies the 10 latest games at most.
         """
         return self._request("pvp/games", access_token=token) if token else self._request("pvp/games")
 
