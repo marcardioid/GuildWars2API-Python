@@ -43,6 +43,14 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_material(self, *ids):
+        """Returns the material data for the material(s) with the given id(s) as a list."""
+        return self._request("materials", ids=','.join(str(id) for id in ids))
+
+    def get_materials_ids(self):
+        """Returns just all the material ids as a list."""
+        return self._request("materials")
+
     def get_pvp_game(self, *ids, token=None):
         """Returns the pvp game data for the pvp game(s) with the given id(s) as a list.
         The API endpoint only supplies the 10 lates games at most.
