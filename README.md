@@ -31,6 +31,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 
 ## List of currently supported endpoints
 
+- /v2/maps
 - /v2/materials
 - /v2/pvp/games
 - /v2/pvp/stats
