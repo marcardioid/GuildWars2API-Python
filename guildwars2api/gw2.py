@@ -43,32 +43,36 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_tokeninfo(self, token=None):
+        """Returns the tokeninfo for the current session or the given token."""
+        return self._request("tokeninfo", access_token=token) if token else self._request("tokeninfo")
+
     def get_trait(self, *ids):
-        """Get the trait data for the trait(s) with the given id(s) as a list."""
+        """Returns the trait data for the trait(s) with the given id(s) as a list."""
         return self._request("traits", ids=','.join(str(id) for id in ids))
 
     def get_traits_ids(self):
-        """Get just all the trait ids as a list."""
+        """Returns just all the trait ids as a list."""
         return self._request("traits")
 
     def get_world(self, *ids):
-        """Get the world data for the world(s) with the given id(s) as a list."""
+        """Returns the world data for the world(s) with the given id(s) as a list."""
         return self._request("worlds", ids=','.join(str(id) for id in ids))
 
     def get_worlds(self):
-        """Get all the world data as a list."""
+        """Returns all the world data as a list."""
         return self._request("worlds", ids="all") # TODO: This also works by calling get_world("all"). Merge functions?
 
     def get_worlds_ids(self):
-        """Get just all the world ids as a list."""
+        """Returns just all the world ids as a list."""
         return self._request("worlds")
 
     def get_endpoints(self):
-        """Get the available API endpoints for version 2 of the Guild Wars 2 API as a list."""
+        """Returns the available API endpoints for version 2 of the Guild Wars 2 API as a list."""
         return self.API_ENDPOINTS_V2
 
     def get_connection_details(self):
-        """Get the API connection details as a string."""
+        """Returns the API connection details as a string."""
         return "Connected to '{}' ({}).{}".format(self.API_SERVER,
                                                   self.API_LANGUAGE.upper(),
                                                   " (With token: {})".format(self.API_KEY) if self.API_KEY else '')
