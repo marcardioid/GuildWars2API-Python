@@ -43,6 +43,14 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_quaggan(self, *ids):
+        """Returns the quaggan data for the quaggan(s) with the given id(s) as a list."""
+        return self._request("quaggans", ids=','.join(str(id) for id in ids))
+
+    def get_quaggans_ids(self):
+        """Returns just all the quaggan ids as a list."""
+        return self._request("quaggans")
+
     def get_recipe(self, *ids):
         """Returns the recipe data for the recipe(s) with the given id(s) as a list."""
         return self._request("recipes", ids=','.join(str(id) for id in ids))
