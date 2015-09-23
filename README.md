@@ -6,6 +6,9 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     import guildwars2api
     gw = guildwars2api.GW2()
     
+    # You can specify a preferred localization and a connection timeout (in seconds).
+    gw = guildwars2api.GW2(language="EN", timeout=5)
+    
     # Print details about your connection to the Guild Wars 2 API, e.g. the current API key.
     print(gw.get_connection_details())
     
