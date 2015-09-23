@@ -23,6 +23,6 @@ setup(
     license='MIT',
     author='Marc Sleegers',
     author_email='mail@marcsleegers.com',
-    description='A Python wrapper for the second version of the Guild Wars 2 API.',
+    description='A Python 3.x wrapper for the second version of the Guild Wars 2 API.',
     install_requires=requirements
 )

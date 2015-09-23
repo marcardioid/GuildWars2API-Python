@@ -12,10 +12,12 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     # Print the currently available endpoints of the second version of the Guild Wars 2 API.
     print('\n'.join(gw.get_endpoints()))
     
-    # Get a list of details of respectively a world, a few worlds, all worlds and just all world ids.
+    # Get a list of details of respectively a world, a few worlds and all worlds.
     world = gw.get_world(1001)
     worlds = gw.get_world(1001, 1002, 1003)
     worlds = gw.get_worlds()
+    
+    # You can also grab just all world ids.
     world_ids = gw.get_worlds_ids()
     
     # Print out all the world names of the worlds with a very high population of players.
