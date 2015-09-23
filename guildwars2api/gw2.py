@@ -43,6 +43,14 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_item(self, *ids):
+        """Returns the item data for the item(s) with the given id(s) as a list."""
+        return self._request("items", ids=','.join(str(id) for id in ids))
+
+    def get_items_ids(self):
+        """Returns just all the item ids as a list."""
+        return self._request("items")
+
     def get_map(self, *ids):
         """Returns the map data for the map(s) with the given id(s) as a list."""
         return self._request("maps", ids=','.join(str(id) for id in ids))
