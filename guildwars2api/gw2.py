@@ -43,6 +43,23 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_pvp_game(self, *ids, token=None):
+        """Returns the pvp game data for the pvp game(s) with the given id(s) as a list.
+        The API endpoint only supplies the 10 lates games at most.
+        """
+        matches = ','.join(str(id) for id in ids)
+        return self._request("pvp/games", access_token=token, ids=matches) if token else self._request("pvp/games", ids=matches)
+
+    def get_pvp_games_ids(self, token=None):
+        """Returns just all the pvp game ids as a list.
+        The API endpoint only supplies the 10 lates games at most.
+        """
+        return self._request("pvp/games", access_token=token) if token else self._request("pvp/games")
+
+    def get_pvp_stats(self, token=None):
+        """Returns the pvp stats for the current session token or the given token."""
+        return self._request("pvp/stats", access_token=token) if token else self._request("pvp/stats")
+
     def get_quaggan(self, *ids):
         """Returns the quaggan data for the quaggan(s) with the given id(s) as a list."""
         return self._request("quaggans", ids=','.join(str(id) for id in ids))
@@ -85,7 +102,7 @@ class GW2(object):
         return self._request("specializations")
 
     def get_tokeninfo(self, token=None):
-        """Returns the tokeninfo for the current session or the given token."""
+        """Returns the tokeninfo for the current session token or the given token."""
         return self._request("tokeninfo", access_token=token) if token else self._request("tokeninfo")
 
     def get_trait(self, *ids):
