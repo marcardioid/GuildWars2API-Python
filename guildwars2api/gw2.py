@@ -43,6 +43,18 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_file(self, *ids):
+        """Returns the file data for the file(s) with the given id(s) as a list."""
+        return self._request("files", ids=','.join(str(id) for id in ids))
+
+    def get_files(self):
+        """Returns all the file data as a list."""
+        return self._request("files", ids="all") # TODO: This also works by calling get_world("all"). Merge functions?
+
+    def get_files_ids(self):
+        """Returns just all the file ids as a list."""
+        return self._request("files")
+
     def get_item(self, *ids):
         """Returns the item data for the item(s) with the given id(s) as a list."""
         return self._request("items", ids=','.join(str(id) for id in ids))
