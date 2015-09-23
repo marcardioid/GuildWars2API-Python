@@ -31,6 +31,8 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 
 ## List of currently supported endpoints
 
+- /v2/recipes
+- /v2/recipes/search
 - /v2/skins
 - /v2/specializations
 - /v2/tokeninfo

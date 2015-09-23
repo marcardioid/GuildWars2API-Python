@@ -43,6 +43,23 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "TEST GW2API WRAPPER FOR PYTHON 3.5", "Accept": "application/json"})
 
+    def get_recipe(self, *ids):
+        """Returns the recipe data for the recipe(s) with the given id(s) as a list."""
+        return self._request("recipes", ids=','.join(str(id) for id in ids))
+
+    def get_recipes_ids(self):
+        """Returns just all the recipe ids as a list."""
+        return self._request("recipes")
+
+    def get_recipes_ids_by_ingredient(self, lookup, id):
+        """Returns a list of recipes using the given ingredient. Searchable by input and output ingredient."""
+        if lookup == "input":
+            return self._request("recipes/search", input=id)
+        elif lookup == "output":
+            return self._request("recipes/search", output=id)
+        else:
+            return [] # TODO: Raise API exception!
+
     def get_skin(self, *ids):
         """Returns the skin data for the skin(s) with the given id(s) as a list."""
         return self._request("skins", ids=','.join(str(id) for id in ids))
