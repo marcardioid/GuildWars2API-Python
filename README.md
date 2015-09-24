@@ -20,8 +20,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     # Print the currently available endpoints of the second version of the Guild Wars 2 API.
     print('\n'.join(gw.get_endpoints()))
     
-    # Some player account endpoints, e.g. /v2/pvp/stats, require an authenticated connection
-    # to the Guild Wars 2 API.
+    # Some player account endpoints, e.g. /v2/pvp/stats, require an authenticated connection.
     # You can authenticate an entire session directly...
     gw.authenticate("REDACTED_API_KEY")
     print(gw.get_pvp_stats())
