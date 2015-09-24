@@ -16,18 +16,18 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     print('\n'.join(gw.get_endpoints()))
     
     # Get a list of details of respectively a world, a few worlds and all worlds.
-    world = gw.get_world(1001)
-    worlds = gw.get_world(1001, 1002, 1003)
-    worlds = gw.get_worlds()
+    world = gw.get_worlds(1001)
+    worlds = gw.get_worlds(1001, 1002, 1003)
+    worlds = gw.get_worlds("all")
     
     # You can also grab just all the world ids.
     world_ids = gw.get_worlds_ids()
     
     # Print out all the world names of the worlds with a very high population of players.
-    worlds = gw.get_worlds()
+    worlds = gw.get_worlds("all")
     for world in worlds:
         if world["population"] == "VeryHigh":
-            print("{}".format(world["name"]))
+            print("{}\t{}".format(world["id"], world["name"]))
 
 ## List of currently supported endpoints
 

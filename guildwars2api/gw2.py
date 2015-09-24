@@ -43,19 +43,15 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
-    def get_file(self, *ids):
+    def get_files(self, *ids):
         """Returns the file data for the file(s) with the given id(s) as a list."""
         return self._request("files", ids=','.join(str(id) for id in ids))
-
-    def get_files(self):
-        """Returns all the file data as a list."""
-        return self._request("files", ids="all") # TODO: This also works by calling get_world("all"). Merge functions?
 
     def get_files_ids(self):
         """Returns just all the file ids as a list."""
         return self._request("files")
 
-    def get_item(self, *ids):
+    def get_items(self, *ids):
         """Returns the item data for the item(s) with the given id(s) as a list."""
         return self._request("items", ids=','.join(str(id) for id in ids))
 
@@ -63,7 +59,7 @@ class GW2(object):
         """Returns just all the item ids as a list."""
         return self._request("items")
 
-    def get_map(self, *ids):
+    def get_maps(self, *ids):
         """Returns the map data for the map(s) with the given id(s) as a list."""
         return self._request("maps", ids=','.join(str(id) for id in ids))
 
@@ -71,7 +67,7 @@ class GW2(object):
         """Returns just all the maps ids as a list."""
         return self._request("maps")
 
-    def get_material(self, *ids):
+    def get_materials(self, *ids):
         """Returns the material data for the material(s) with the given id(s) as a list."""
         return self._request("materials", ids=','.join(str(id) for id in ids))
 
@@ -79,7 +75,7 @@ class GW2(object):
         """Returns just all the material ids as a list."""
         return self._request("materials")
 
-    def get_pvp_game(self, *ids, token=None):
+    def get_pvp_games(self, *ids, token=None):
         """Returns the pvp game data for the pvp game(s) with the given id(s) as a list.
         The API endpoint only supplies the 10 latest games at most.
         """
@@ -96,7 +92,7 @@ class GW2(object):
         """Returns the pvp stats for the current session token or the given token."""
         return self._request("pvp/stats", access_token=token) if token else self._request("pvp/stats")
 
-    def get_quaggan(self, *ids):
+    def get_quaggans(self, *ids):
         """Returns the quaggan data for the quaggan(s) with the given id(s) as a list."""
         return self._request("quaggans", ids=','.join(str(id) for id in ids))
 
@@ -104,7 +100,7 @@ class GW2(object):
         """Returns just all the quaggan ids as a list."""
         return self._request("quaggans")
 
-    def get_recipe(self, *ids):
+    def get_recipes(self, *ids):
         """Returns the recipe data for the recipe(s) with the given id(s) as a list."""
         return self._request("recipes", ids=','.join(str(id) for id in ids))
 
@@ -121,7 +117,7 @@ class GW2(object):
         else:
             return [] # TODO: Raise API exception!
 
-    def get_skin(self, *ids):
+    def get_skins(self, *ids):
         """Returns the skin data for the skin(s) with the given id(s) as a list."""
         return self._request("skins", ids=','.join(str(id) for id in ids))
 
@@ -129,11 +125,11 @@ class GW2(object):
         """Returns just all the skin ids as a list."""
         return self._request("skins")
 
-    def get_specialization(self, *ids):
+    def get_specializations(self, *ids):
         """Returns the specialization data for the specialization(s) with the given id(s) as a list."""
         return self._request("specializations", ids=','.join(str(id) for id in ids))
 
-    def get_specialization_ids(self):
+    def get_specializations_ids(self):
         """Returns just all the specialization ids as a list."""
         return self._request("specializations")
 
@@ -141,7 +137,7 @@ class GW2(object):
         """Returns the tokeninfo for the current session token or the given token."""
         return self._request("tokeninfo", access_token=token) if token else self._request("tokeninfo")
 
-    def get_trait(self, *ids):
+    def get_traits(self, *ids):
         """Returns the trait data for the trait(s) with the given id(s) as a list."""
         return self._request("traits", ids=','.join(str(id) for id in ids))
 
@@ -149,13 +145,9 @@ class GW2(object):
         """Returns just all the trait ids as a list."""
         return self._request("traits")
 
-    def get_world(self, *ids):
+    def get_worlds(self, *ids):
         """Returns the world data for the world(s) with the given id(s) as a list."""
         return self._request("worlds", ids=','.join(str(id) for id in ids))
-
-    def get_worlds(self):
-        """Returns all the world data as a list."""
-        return self._request("worlds", ids="all") # TODO: This also works by calling get_world("all"). Merge functions?
 
     def get_worlds_ids(self):
         """Returns just all the world ids as a list."""
