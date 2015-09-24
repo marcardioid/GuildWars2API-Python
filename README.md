@@ -1,6 +1,11 @@
 # Guild Wars 2 API (Python)
 A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwars2.com/wiki/API:Main" target="_blank">Guild Wars 2 API</a>.
 
+## Installation
+
+- Clone or download the repository
+- Run `python setup.py install`
+
 ## Usage
 
     import guildwars2api
