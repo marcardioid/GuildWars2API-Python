@@ -193,14 +193,13 @@ class GW2(object):
         """Returns just all the recipe ids as a list."""
         return self._request("recipes")
 
-    def get_recipes_ids_by_ingredient(self, lookup, id): # TODO: Split to two functions?
-        """Returns a list of recipes using the given ingredient. Searchable by input and output ingredient."""
-        if lookup == "input":
-            return self._request("recipes/search", input=id)
-        elif lookup == "output":
-            return self._request("recipes/search", output=id)
-        else:
-            return [] # TODO: Raise API exception!
+    def get_recipes_ids_by_input_ingredient(self, id):
+        """Returns a list of recipes using the given input ingredient id."""
+        return self._request("recipes/search", input=id)
+
+    def get_recipes_ids_by_output_ingredient(self, id):
+        """Returns a list of recipes using the given output ingredient id."""
+        return self._request("recipes/search", output=id)
 
     def get_skins(self, *ids):
         """Returns the skin data for the skin(s) with the given id(s) as a list."""
