@@ -43,6 +43,14 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_currencies(self, *ids):
+        """Returns the currency data for the currency/currencies with the given id(s) as a list."""
+        return self._request("currencies", ids=','.join(str(id) for id in ids))
+
+    def get_currencies_ids(self):
+        """Returns just all the currency ids as a list."""
+        return self._request("currencies")
+
     def get_files(self, *ids):
         """Returns the file data for the file(s) with the given id(s) as a list."""
         return self._request("files", ids=','.join(str(id) for id in ids))
