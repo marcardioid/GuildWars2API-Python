@@ -16,6 +16,7 @@ class GW2(object):
             "build",
             "characters",
             "colors",
+            "commerce",
             "commerce/exchange",
             "commerce/exchange/coins",
             "commerce/exchange/gems",
@@ -42,6 +43,26 @@ class GW2(object):
         self.API_KEY = None
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
+
+    def get_commerce_transactions_current_buys(self, token=None):
+        """Returns the current buying commerce transactions for the current session token or the given token."""
+        return self._request("commerce/transactions/current/buys", access_token=token) if token else self._request("commerce/transactions/current/buys")
+
+    def get_commerce_transactions_current_sells(self, token=None):
+        """Returns the current selling commerce transactions for the current session token or the given token.
+        The API endpoint only supplies the commerce transaction history of the past 90 days.
+        """
+        return self._request("commerce/transactions/current/sells", access_token=token) if token else self._request("commerce/transactions/current/sells")
+
+    def get_commerce_transactions_history_buys(self, token=None):
+        """Returns the buying commerce transaction history for the current session token or the given token.
+        The API endpoint only supplies the commerce transaction history of the past 90 days.
+        """
+        return self._request("commerce/transactions/history/buys", access_token=token) if token else self._request("commerce/transactions/history/buys")
+
+    def get_commerce_transactions_history_sells(self, token=None):
+        """Returns the selling commerce transaction history for the current session token or the given token."""
+        return self._request("commerce/transactions/history/sells", access_token=token) if token else self._request("commerce/transactions/history/sells")
 
     def get_continents(self, *ids):
         """Returns the continent data for the continent(s) with the given id(s) as a list."""
@@ -172,7 +193,7 @@ class GW2(object):
         """Returns just all the recipe ids as a list."""
         return self._request("recipes")
 
-    def get_recipes_ids_by_ingredient(self, lookup, id):
+    def get_recipes_ids_by_ingredient(self, lookup, id): # TODO: Split to two functions?
         """Returns a list of recipes using the given ingredient. Searchable by input and output ingredient."""
         if lookup == "input":
             return self._request("recipes/search", input=id)
@@ -235,7 +256,7 @@ class GW2(object):
     def _request(self, location, **kwargs):
         """Send a request to the Guild Wars 2 API."""
         kwargs["lang"] = self.API_LANGUAGE
-        version = "v2" if location.split('/')[0] in self.API_ENDPOINTS_V2 else "v1"
+        version = "v2" if location in self.API_ENDPOINTS_V2 or location.split('/')[0] in self.API_ENDPOINTS_V2 else "v1"
         try:
             r = self.session.get("{}/{}/{}".format(self.API_SERVER, version, location),
                                  params=kwargs.items(),
