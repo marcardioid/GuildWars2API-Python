@@ -28,7 +28,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     print(gw.get_pvp_stats("REDACTED_API_KEY"))
     # Likewise, you can securely retrieve access token information for the session token...
     print(gw.get_tokeninfo())
-    # ...or a given API key.
+    # ...or for a given API key.
     print(gw.get_tokeninfo("REDACTED_API_KEY"))
     
     # Get a list of details of respectively a world, a few worlds and all worlds.
