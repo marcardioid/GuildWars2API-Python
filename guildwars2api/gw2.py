@@ -43,6 +43,62 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_continents(self, *ids):
+        """Returns the continent data for the continent(s) with the given id(s) as a list."""
+        return self._request("continents", ids=','.join(str(id) for id in ids))
+
+    def get_continents_ids(self):
+        """Returns just all the continent ids as a list."""
+        return self._request("continents")
+
+    def get_continent_floors(self, continent_id, *ids):
+        """Returns the floor data for the floor(s) with the given id(s) for the given continent as a list."""
+        return self._request("continents/{}/floors".format(continent_id), ids=','.join(str(id) for id in ids))
+
+    def get_continent_floors_ids(self, continent_id):
+        """Returns just all the floor ids for the given continent as a list."""
+        return self._request("continents/{}/floors".format(continent_id))
+
+    def get_continent_floor_regions(self, continent_id, floor_id, *ids):
+        """Returns the region data for the region(s) with the given id(s) for the given continent and floor as a list."""
+        return self._request("continents/{}/floors/{}/regions".format(continent_id, floor_id), ids=','.join(str(id) for id in ids))
+
+    def get_continent_floor_regions_ids(self, continent_id, floor_id):
+        """Returns just all the region ids for the given continent and floor as a list."""
+        return self._request("continents/{}/floors/{}/regions".format(continent_id, floor_id))
+
+    def get_continent_floor_region_maps(self, continent_id, floor_id, region_id, *ids):
+        """Returns the map data for the map(s) with the given id(s) for the given continent, floor and region a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps".format(continent_id, floor_id, region_id), ids=','.join(str(id) for id in ids))
+
+    def get_continent_floor_region_maps_ids(self, continent_id, floor_id, region_id):
+        """Returns just all the map ids for the given continent, floor and region as a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps".format(continent_id, floor_id, region_id))
+
+    def get_continent_floor_region_map_sectors(self, continent_id, floor_id, region_id, map_id, *ids):
+        """Returns the sector data for the sectors(s) with the given id(s) for the given continent, floor, region and map a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps/{}/sectors".format(continent_id, floor_id, region_id, map_id), ids=','.join(str(id) for id in ids))
+
+    def get_continent_floor_region_map_sectors_ids(self, continent_id, floor_id, region_id, map_id):
+        """Returns just all the sector ids for the given continent, floor, region and map as a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps/{}/sectors".format(continent_id, floor_id, region_id, map_id))
+
+    def get_continent_floor_region_map_pois(self, continent_id, floor_id, region_id, map_id, *ids):
+        """Returns the point of interest data for the point(s) of interest with the given id(s) for the given continent, floor, region and map a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps/{}/pois".format(continent_id, floor_id, region_id, map_id), ids=','.join(str(id) for id in ids))
+
+    def get_continent_floor_region_map_pois_ids(self, continent_id, floor_id, region_id, map_id):
+        """Returns just all the point of interest ids for the given continent, floor, region and map as a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps/{}/pois".format(continent_id, floor_id, region_id, map_id))
+
+    def get_continent_floor_region_map_tasks(self, continent_id, floor_id, region_id, map_id, *ids):
+        """Returns the task data for the task(s) with the given id(s) for the given continent, floor, region and map a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps/{}/tasks".format(continent_id, floor_id, region_id, map_id), ids=','.join(str(id) for id in ids))
+
+    def get_continent_floor_region_map_tasks_ids(self, continent_id, floor_id, region_id, map_id):
+        """Returns just all the task ids for the given continent, floor, region and map as a list."""
+        return self._request("continents/{}/floors/{}/regions/{}/maps/{}/tasks".format(continent_id, floor_id, region_id, map_id))
+
     def get_currencies(self, *ids):
         """Returns the currency data for the currency/currencies with the given id(s) as a list."""
         return self._request("currencies", ids=','.join(str(id) for id in ids))
@@ -179,7 +235,7 @@ class GW2(object):
     def _request(self, location, **kwargs):
         """Send a request to the Guild Wars 2 API."""
         kwargs["lang"] = self.API_LANGUAGE
-        version = "v2" if location in self.API_ENDPOINTS_V2 else "v1"
+        version = "v2" if location.split('/')[0] in self.API_ENDPOINTS_V2 else "v1"
         try:
             r = self.session.get("{}/{}/{}".format(self.API_SERVER, version, location),
                                  params=kwargs.items(),
