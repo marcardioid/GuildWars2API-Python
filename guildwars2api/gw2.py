@@ -44,6 +44,27 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_characters(self, *ids, token=None):
+        """Returns the character data for the character(s) with the given name(s) as a list."""
+        names = ','.join(str(id) for id in ids)
+        return self._request("characters", access_token=token, ids=names) if token else self._request("characters", ids=names)
+
+    def get_characters_names(self, token=None):
+        """Returns just all the character names as a list for the current session token or the given token."""
+        return self._request("characters", access_token=token) if token else self._request("characters")
+
+    def get_character_equipment(self, name, token=None):
+        """Returns the equipment data for the character with the given name as a list for the current session token or the given token."""
+        name =  requests.utils.quote(name)
+        location = "characters/{}/equipment".format(name)
+        return self._request(location, access_token=token) if token else self._request(location)
+
+    def get_character_inventory(self, name, token=None):
+        """Returns the inventory data for the character with the given name as a list for the current session token or the given token."""
+        name =  requests.utils.quote(name)
+        location = "characters/{}/inventory".format(name)
+        return self._request(location, access_token=token) if token else self._request(location)
+
     def get_colors(self, *ids):
         """Returns the color data for the color(s) with the given id(s) as a list."""
         return self._request("colors", ids=','.join(str(id) for id in ids))
@@ -316,6 +337,7 @@ class GW2(object):
         """Authenticate to the GuildWars2 API using the given API key."""
         self.API_KEY = key
         self.session.headers.update({"Authorization": "Bearer {}".format(key)})
+        return self.get_tokeninfo(key)
 
     def _request(self, location, **kwargs):
         """Send a request to the Guild Wars 2 API."""
@@ -328,7 +350,7 @@ class GW2(object):
             r.raise_for_status()
             try:
                 return r.json()
-            except ValueError as e:
+            except ValueError as e: # TODO: Throw exception if not authenticated in stead of returning the endpoint error array.
                 print(e)
                 return [] # TODO: Throw custom API exception?
         except (requests.exceptions.HTTPError, requests.exceptions.Timeout, ConnectionError) as e:
