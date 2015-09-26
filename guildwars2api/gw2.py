@@ -44,6 +44,21 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def coins_to_gold(self, copper):
+        """Returns the amount of gold, silver and copper in the given amount of coins as a dictionary."""
+        gold = silver = 0
+        while copper >= 10000:
+            gold += 1
+            copper -= 10000
+        while copper >= 100:
+            silver += 1
+            copper -= 100
+        return {"gold": gold, "silver": silver, "copper": copper}
+
+    def gold_to_coins(self, gold=0, silver=0, copper=0):
+        """Returns the total amount of coins in the given dictionary of gold, silver and copper coins as an integer."""
+        return sum([gold*10000, silver*100, copper])
+
     def get_commerce_exchange(self):
         """Returns all accepted resources for the gem exchange as a list."""
         return self._request("commerce/exchange")
