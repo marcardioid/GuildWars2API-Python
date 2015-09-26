@@ -48,6 +48,8 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 ## List of currently supported endpoints
 
 - /v2/commerce/exchange
+- /v2/commerce/exchange/coins
+- /v2/commerce/exchange/gems
 - /v2/commerce/listings
 - /v2/commerce/prices
 - /v2/commerce/transactions

@@ -48,6 +48,14 @@ class GW2(object):
         """Returns all accepted resources for the gem exchange as a list."""
         return self._request("commerce/exchange")
 
+    def get_commerce_exchange_coins(self, amount):
+        """Returns the current coins to gems exchange rate for the given amount of coins as a dictionary."""
+        return self._request("commerce/exchange/coins", quantity=amount)
+
+    def get_commerce_exchange_gems(self, amount):
+        """Returns the current gems to coins exchange rate for the given amount of gems as a dictionary."""
+        return self._request("commerce/exchange/gems", quantity=amount)
+
     def get_commerce_listings(self, *ids):
         """Returns the item trading post listing data for the item(s) with the given id(s) as a list.
         Because of trading post regulations, you are unable to use the 'all' keyword for this endpoint.
