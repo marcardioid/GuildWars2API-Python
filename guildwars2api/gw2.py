@@ -44,6 +44,10 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_commerce_exchange(self):
+        """Returns all accepted resources for the gem exchange as a list."""
+        return self._request("commerce/exchange")
+
     def get_commerce_listings(self, *ids):
         """Returns the item trading post listing data for the item(s) with the given id(s) as a list.
         Because of trading post regulations, you are unable to use the 'all' keyword for this endpoint.
