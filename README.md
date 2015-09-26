@@ -47,6 +47,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 
 ## List of currently supported endpoints
 
+- /v2/colors
 - /v2/commerce/exchange
 - /v2/commerce/exchange/coins
 - /v2/commerce/exchange/gems

@@ -44,6 +44,14 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_colors(self, *ids):
+        """Returns the color data for the color(s) with the given id(s) as a list."""
+        return self._request("colors", ids=','.join(str(id) for id in ids))
+
+    def get_colors_ids(self):
+        """Returns just all the color ids as a list."""
+        return self._request("colors")
+
     def coins_to_gold(self, copper):
         """Returns the amount of gold, silver and copper in the given (positive) amount of coins as a dictionary."""
         gold = silver = 0
