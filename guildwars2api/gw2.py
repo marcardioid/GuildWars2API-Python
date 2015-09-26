@@ -59,6 +59,15 @@ class GW2(object):
         """Returns the total amount of coins in the given dictionary of gold, silver and copper coins as an integer."""
         return sum([gold*10000, silver*100, copper])
 
+    def get_commerce_profit(self, sell_price, buy_price=0):
+        """Returns the profit of the item with the given sell price and optional cost if sold on the trading post
+        as a dictionary including the profit, the transaction fee and the exchange fee.
+        """
+        listing_fee = max(round((sell_price / 100) * 5), 1)
+        exchange_fee = max(round((sell_price / 100) * 10), 1)
+        profit = sell_price - listing_fee - exchange_fee - buy_price
+        return {"fee": listing_fee, "tax": exchange_fee, "profit": profit}
+
     def get_commerce_exchange(self):
         """Returns all accepted resources for the gem exchange as a list."""
         return self._request("commerce/exchange")
