@@ -322,7 +322,7 @@ class GW2(object):
                 return r.json()
             except ValueError as e:
                 print(e)
-                return []
+                return [] # TODO: Throw custom API exception?
         except (requests.exceptions.HTTPError, requests.exceptions.Timeout, ConnectionError) as e:
             print(e)
-            return []
+            return [] # TODO: Throw custom API exception?

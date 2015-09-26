@@ -79,7 +79,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     print(gw.coins_to_gold(20000))
     # Or, you can convert any amount of gold, silver and copper to an amount of coins.
     print(gw.gold_to_coins(2, 11, 23))
-    # Finally, you can calculate your profit if you were to sell an item on the TP.
+    # Finally, you can calculate your profit if you were to sell an item on the trading post.
     print(gw.get_commerce_profit(21123))
 
 ## License
