@@ -45,8 +45,9 @@ class GW2(object):
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
     def coins_to_gold(self, copper):
-        """Returns the amount of gold, silver and copper in the given amount of coins as a dictionary."""
+        """Returns the amount of gold, silver and copper in the given (positive) amount of coins as a dictionary."""
         gold = silver = 0
+        copper = abs(copper)
         while copper >= 10000:
             gold += 1
             copper -= 10000

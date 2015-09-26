@@ -70,6 +70,18 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 - /v2/traits
 - /v2/worlds
 
+## Additional functionality
+
+    import guildwars2api
+    gw = guildwars2api.GW2()
+    
+    # You can easily convert any amount of coins to an amount of gold, silver and copper.
+    print(gw.coins_to_gold(20000))
+    # Or, you can convert any amount of gold, silver and copper to an amount of coins.
+    print(gw.gold_to_coins(2, 11, 23))
+    # Finally, you can calculate your profit if you were to sell an item on the TP.
+    print(gw.get_commerce_profit(21123))
+
 ## License
 
 Code in this repository is licensed under the [MIT License](LICENSE).
