@@ -44,6 +44,10 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_build(self):
+        """Returns the current build id of the Guild Wars 2 game as an integer."""
+        return int(self._request("build")["id"])
+
     def get_characters(self, *ids, token=None):
         """Returns the character data for the character(s) with the given name(s) as a list."""
         names = ','.join(str(id) for id in ids)
