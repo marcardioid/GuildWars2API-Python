@@ -44,6 +44,16 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_commerce_prices(self, *ids):
+        """Returns the item trading post data for the item(s) with the given id(s) as a list.
+        Because of trading post regulations, you are unable to use the 'all' keyword for this endpoint.
+        """
+        return self._request("commerce/prices", ids=','.join(str(id) for id in ids))
+
+    def get_commerce_prices_ids(self):
+        """Returns just all the item ids of all the items on the trading post as a list."""
+        return self._request("commerce/prices")
+
     def get_commerce_transactions_current_buys(self, token=None):
         """Returns the current buying commerce transactions for the current session token or the given token."""
         return self._request("commerce/transactions/current/buys", access_token=token) if token else self._request("commerce/transactions/current/buys")
