@@ -73,6 +73,8 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 - /v2/traits
 - /v2/worlds
 
+Up next: support for endpoint /v2/account and backwards compatibility with /v1/ endpoints that are not in /v2/.
+
 ## Additional functionality
 
     import guildwars2api
