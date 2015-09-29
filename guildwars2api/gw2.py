@@ -60,6 +60,10 @@ class GW2(object):
         """Returns the material storage data as a list for the current session token or the given token."""
         return self._request("account/materials", access_token=token) if token else self._request("account/materials")
 
+    def get_account_skins(self, token=None):
+        """Returns the unlocked skin data as a list for the current session token or the given token."""
+        return self._request("account/skins", access_token=token) if token else self._request("account/skins")
+
     def get_build(self):
         """Returns the current build id of the Guild Wars 2 game as an integer."""
         return int(self._request("build")["id"])
