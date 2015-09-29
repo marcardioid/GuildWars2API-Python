@@ -44,6 +44,10 @@ class GW2(object):
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
+    def get_account(self, token=None):
+        """Returns the account data for the current session token or the given token."""
+        return self._request("account", access_token=token) if token else self._request("account")
+
     def get_build(self):
         """Returns the current build id of the Guild Wars 2 game as an integer."""
         return int(self._request("build")["id"])
@@ -354,7 +358,7 @@ class GW2(object):
             r.raise_for_status()
             try:
                 return r.json()
-            except ValueError as e: # TODO: Throw exception if not authenticated in stead of returning the endpoint error array.
+            except ValueError as e: # TODO: Throw exception if not authenticated instead of returning the endpoint error array.
                 print(e)
                 return [] # TODO: Throw custom API exception?
         except (requests.exceptions.HTTPError, requests.exceptions.Timeout, ConnectionError) as e:

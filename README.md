@@ -47,6 +47,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 
 ## List of currently supported endpoints
 
+- /v2/account
 - /v2/build
 - /v2/characters (and all subresources)
 - /v2/colors
@@ -73,7 +74,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 - /v2/traits
 - /v2/worlds
 
-Up next: support for endpoint /v2/account and backwards compatibility with /v1/ endpoints that are not in /v2/.
+Up next: backwards compatibility with /v1/ endpoints that are not in /v2/.
 
 ## Additional functionality
 
