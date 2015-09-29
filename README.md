@@ -49,6 +49,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 
 - /v2/account
 - /v2/account/bank
+- /v2/account/dyes
 - /v2/build
 - /v2/characters (and all subresources)
 - /v2/colors

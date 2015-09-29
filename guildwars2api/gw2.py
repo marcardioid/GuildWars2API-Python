@@ -52,6 +52,10 @@ class GW2(object):
         """Returns the bank data as a list for the current session token or the given token."""
         return self._request("account/bank", access_token=token) if token else self._request("account/bank")
 
+    def get_account_dyes(self, token=None):
+        """Returns the unlocked dye data as a list for the current session token or the given token."""
+        return self._request("account/dyes", access_token=token) if token else self._request("account/dyes")
+
     def get_build(self):
         """Returns the current build id of the Guild Wars 2 game as an integer."""
         return int(self._request("build")["id"])
