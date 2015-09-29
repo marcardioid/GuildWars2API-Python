@@ -6,6 +6,12 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 - Clone or download the repository
 - Run `python setup.py install`
 
+## List of currently supported endpoints
+
+All <a href="http://wiki.guildwars2.com/wiki/API:2#Active_endpoints" target="_blank">currently available</a> /v2/ API endpoints are now supported.
+
+Up next: backwards compatibility with /v1/ endpoints that are not in /v2/.
+
 ## Usage
 
     import guildwars2api
@@ -44,12 +50,6 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
     for world in worlds:
         if world["population"] == "VeryHigh":
             print("{}\t{}".format(world["id"], world["name"]))
-
-## List of currently supported endpoints
-
-All <a href="http://wiki.guildwars2.com/wiki/API:2#Active_endpoints" target="_blank">currently available</a> /v2/ API endpoints are now supported.
-
-Up next: backwards compatibility with /v1/ endpoints that are not in /v2/.
 
 ## Additional functionality
 

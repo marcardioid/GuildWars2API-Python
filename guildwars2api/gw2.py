@@ -158,23 +158,23 @@ class GW2(object):
         """Returns just all the item ids of all the items on the trading post as a list."""
         return self._request("commerce/prices")
 
-    def get_commerce_transactions_current_buys(self, token=None):
+    def get_commerce_transactions_current_buys(self, token=None): # TODO: Add paging support!
         """Returns the current buying commerce transactions for the current session token or the given token."""
         return self._request("commerce/transactions/current/buys", access_token=token) if token else self._request("commerce/transactions/current/buys")
 
-    def get_commerce_transactions_current_sells(self, token=None):
+    def get_commerce_transactions_current_sells(self, token=None): # TODO: Add paging support!
         """Returns the current selling commerce transactions for the current session token or the given token.
         The API endpoint only supplies the commerce transaction history of the past 90 days.
         """
         return self._request("commerce/transactions/current/sells", access_token=token) if token else self._request("commerce/transactions/current/sells")
 
-    def get_commerce_transactions_history_buys(self, token=None):
+    def get_commerce_transactions_history_buys(self, token=None): # TODO: Add paging support!
         """Returns the buying commerce transaction history for the current session token or the given token.
         The API endpoint only supplies the commerce transaction history of the past 90 days.
         """
         return self._request("commerce/transactions/history/buys", access_token=token) if token else self._request("commerce/transactions/history/buys")
 
-    def get_commerce_transactions_history_sells(self, token=None):
+    def get_commerce_transactions_history_sells(self, token=None): # TODO: Add paging support!
         """Returns the selling commerce transaction history for the current session token or the given token."""
         return self._request("commerce/transactions/history/sells", access_token=token) if token else self._request("commerce/transactions/history/sells")
 
