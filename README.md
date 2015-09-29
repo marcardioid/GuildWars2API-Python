@@ -47,37 +47,7 @@ A Python 3.x wrapper for the second version of the <a href="https://wiki.guildwa
 
 ## List of currently supported endpoints
 
-- /v2/account
-- /v2/account/bank
-- /v2/account/dyes
-- /v2/account/materials
-- /v2/account/skins
-- /v2/account/wallet
-- /v2/build
-- /v2/characters (and all subresources)
-- /v2/colors
-- /v2/commerce/exchange
-- /v2/commerce/exchange/coins
-- /v2/commerce/exchange/gems
-- /v2/commerce/listings
-- /v2/commerce/prices
-- /v2/commerce/transactions
-- /v2/continents (and all subresources)
-- /v2/currencies
-- /v2/files
-- /v2/items
-- /v2/maps
-- /v2/materials
-- /v2/pvp/games
-- /v2/pvp/stats
-- /v2/quaggans
-- /v2/recipes
-- /v2/recipes/search
-- /v2/skins
-- /v2/specializations
-- /v2/tokeninfo
-- /v2/traits
-- /v2/worlds
+All <a href="http://wiki.guildwars2.com/wiki/API:2#Active_endpoints" target="_blank">currently available</a> /v2/ API endpoints are now supported.
 
 Up next: backwards compatibility with /v1/ endpoints that are not in /v2/.
 
