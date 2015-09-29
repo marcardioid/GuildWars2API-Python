@@ -45,8 +45,12 @@ class GW2(object):
         self.session.headers.update({"User-Agent": "GUILD WARS 2 API WRAPPER FOR PYTHON 3.X", "Accept": "application/json"})
 
     def get_account(self, token=None):
-        """Returns the account data for the current session token or the given token."""
+        """Returns the account data as a dictionary for the current session token or the given token."""
         return self._request("account", access_token=token) if token else self._request("account")
+
+    def get_account_bank(self, token=None):
+        """Returns the bank data as a list for the current session token or the given token."""
+        return self._request("account/bank", access_token=token) if token else self._request("account/bank")
 
     def get_build(self):
         """Returns the current build id of the Guild Wars 2 game as an integer."""
@@ -58,7 +62,7 @@ class GW2(object):
         return self._request("characters", access_token=token, ids=names) if token else self._request("characters", ids=names)
 
     def get_characters_names(self, token=None):
-        """Returns just all the character names as a list for the current session token or the given token."""
+        """Returns just all the character names as a list for the current session token or the given token as a list."""
         return self._request("characters", access_token=token) if token else self._request("characters")
 
     def get_character_equipment(self, name, token=None):
