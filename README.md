@@ -17,7 +17,7 @@ Up next: backwards compatibility with /v1/ endpoints that are not in /v2/.
     import guildwars2api
     gw = guildwars2api.GW2()
     
-    # You can specify a preferred localization and a connection timeout (in seconds).
+    # You may specify a preferred localization and a connection timeout (in seconds).
     gw = guildwars2api.GW2(language="EN", timeout=5)
     
     # Print details about your connection to the Guild Wars 2 API, e.g. the current API key.
