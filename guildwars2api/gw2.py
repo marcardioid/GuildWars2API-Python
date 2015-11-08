@@ -13,6 +13,7 @@ class GW2(object):
             "account/materials",
             "account/skins",
             "account/wallet",
+            "achievements",
             "build",
             "characters",
             "colors",
@@ -68,6 +69,14 @@ class GW2(object):
     def get_account_wallet(self, token=None):
         """Returns the wallet data as a list for the current session token or the given token."""
         return self._request("account/wallet", access_token=token) if token else self._request("account/wallet")
+
+    def get_achievements(self, *ids):
+        """Returns the achievement data for the achievement(s) with the given id(s) as a list."""
+        return self._request("achievements", ids=','.join(str(id) for id in ids))
+
+    def get_achievements_ids(self):
+        """Returns just all the achievement ids as a list."""
+        return self._request("achievements")
 
     def get_build(self):
         """Returns the current build id of the Guild Wars 2 game as an integer."""
