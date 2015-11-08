@@ -29,6 +29,7 @@ class GW2(object):
             "items",
             "maps",
             "materials",
+            "minis",
             "pvp/games",
             "pvp/stats",
             "quaggans",
@@ -273,6 +274,14 @@ class GW2(object):
     def get_materials_ids(self):
         """Returns just all the material ids as a list."""
         return self._request("materials")
+
+    def get_minis(self, *ids):
+        """Returns the mini data for the mini(s) with the given id(s) as a list."""
+        return self._request("minis", ids=','.join(str(id) for id in ids))
+
+    def get_minis_ids(self):
+        """Returns just all the mini ids as a list."""
+        return self._request("minis")
 
     def get_pvp_games(self, *ids, token=None):
         """Returns the pvp game data for the pvp game(s) with the given id(s) as a list.
